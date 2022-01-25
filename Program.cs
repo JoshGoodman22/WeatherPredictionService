@@ -6,7 +6,7 @@ namespace WeatherPredictionService
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Console.WriteLine("Tim lin is silly ");
         }
     }
 }

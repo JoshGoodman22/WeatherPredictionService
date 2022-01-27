@@ -8,11 +8,23 @@ namespace WeatherPredictionService
 
 
     {
+
+        static List<string> LoadData()
+        {
+            List<string> lines = System.IO.File.ReadAllLines("HistoricalWeatherDataLA.csv").ToList();
+            Console.WriteLine("Okay..Data base is loading...");
+               string header_line = lines[0]; // The first line just contains the headers
+            Console.WriteLine($"Done! {lines.Count} dates loaded.");
+            return lines;
+        }
+
+
         /// <summary>
         /// This Static Void will prompt the user to give a correct date that will be validated. 
         /// </summary>
         /// <param name="args"></param>
-        static void Main3(string[] args)
+        static void GetStarted(string[] args)
+
         {
             string UserMonth;
             string UserDay;
@@ -25,15 +37,6 @@ namespace WeatherPredictionService
 
             List<string> data = LoadData();
 
-        }
-
-
-
-        static List<string> LoadData()
-        {
-        List<string> lines = System.IO.File.ReadAllLines("HistoricalWeatherDataLA.csv").ToList();
-        string header_line = lines[0]; // The first line just contains the headers
-        return lines;
         }
 
         /// <summary>
@@ -52,20 +55,29 @@ namespace WeatherPredictionService
                 throw new Exception("The month you entered doesnt exist");
 
             }
-            if (DayNum > 31 )
+            if (DayNum > 31)
             {
                 throw new Exception("The Day you entered doesnt exist");
             }
-            else 
+            else
             {
                 return;
             }
         }
 
-        static void FilterDates()
+        static string FilterDates()
+        {
+            return null;
+        }
+
+        /// <summary>
+        /// This Method will use the temperatures From FilterDates() to create an average, mode, mean, and median. It will then display the information to the user
+        /// </summary>
+        static void CreatePrediction()
         {
             return;
         }
+
 
     }
 }

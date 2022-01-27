@@ -10,7 +10,9 @@ namespace WeatherPredictionService
 /// <param name="args"></param>
         static void Main(string[] args)
         {
-            WeatherData.Program2.Main2();
+            GettingDate.GetStarted(args);
+            
+            // WeatherData.Program2.Main2();
             // string Month;
             // string Day;
 

@@ -13,7 +13,7 @@ namespace WeatherPredictionService
         /// Load(Data) will generate the data from the CSV and create a string of dates. It will also show the user that how many dates have been loaded. 
         /// </summary>
         /// <returns></returns>
-        static List<string> LoadData()
+        public static List<string> LoadData()
         {
             List<string> lines = System.IO.File.ReadAllLines("HistoricalWeatherDataLA.csv").ToList();
             Console.WriteLine("Okay..Data base is loading...");
@@ -51,7 +51,7 @@ namespace WeatherPredictionService
         /// </summary>
         /// <param name="UserMonth">UserMonth is the Month the user entered and must be real</param>
         /// <param name="UserDay">UserDay is the day the user entered and must be real </param>
-        static (int MonthNum, int DayNum) ValidateDate(string UserMonth, string UserDay)
+        public static (int MonthNum, int DayNum) ValidateDate(string UserMonth, string UserDay)
         {
             int MonthNum;
             int DayNum;
@@ -106,7 +106,7 @@ namespace WeatherPredictionService
     /// This Method will use the temperatures From FilterDates() to create an average, mode, mean, and median. It will then display the information to the user
     /// This methos will take in and read the string of temperatures from GetTemperatures 
     /// </summary>
-    static void CreatePrediction()
+    public static void CreatePrediction()
     {
         return;
     }

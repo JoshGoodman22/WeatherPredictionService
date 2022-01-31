@@ -1,10 +1,10 @@
 using System;
 using System.IO;
 
-class TestValidateDate
+class TestCreatePrediction
 {
-public static bool RunTest()
+    public static bool RunTest()
     {
         return false;
     }
-} 
+}

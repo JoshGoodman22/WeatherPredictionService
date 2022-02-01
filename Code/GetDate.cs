@@ -13,7 +13,7 @@ namespace WeatherPredictionService
         /// Load(Data) will generate the data from the CSV and create a string of dates. It will also show the user that how many dates have been loaded. 
         /// </summary>
         /// <returns></returns>
-        public static List<string> LoadData()
+        public static List<string> LoadData(string filename)
         {
             List<string> lines = System.IO.File.ReadAllLines("HistoricalWeatherDataLA.csv").ToList();
             Console.WriteLine("Okay..Data base is loading...");
@@ -21,10 +21,6 @@ namespace WeatherPredictionService
             return lines;
         }
 
-
-        // Feedback(jcollard: 2022-01-27): I am not 100% sure what you mean with
-        // the comment below / what this method is trying to do. But, this method appears
-        // to be your programs Entry Point. Is that correct?
 
         /// <summary>
         /// This method will prompt the user to enter a date.  This is the entry point. 
@@ -69,7 +65,7 @@ namespace WeatherPredictionService
             }
             else
             {
-                return (MonthNum, DayNum);
+                return (9, 14);
             }
         }
 
@@ -80,11 +76,14 @@ namespace WeatherPredictionService
         /// <param name="month"></param>
         /// <param name="day"></param>
         /// <returns></returns>
-        public static List<string> FilterDates(List<string> data, int month, int day)
+        public static List<string> FilterDates(List<string> data, string month, string day)
         {
             foreach(string line in data)
             {
-                List<string> row = line.Split(",").ToList(); 
+                List<string> row = line.Split(",").ToList();
+                
+                
+
             }
             return null;
         }

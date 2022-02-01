@@ -30,6 +30,11 @@ namespace WeatherPredictionService
 
         }
 
+        internal static object LoadFile(string v)
+        {
+            throw new NotImplementedException();
+        }
+
         public static void TestAll()
         {
             bool testLoadData = TestLoadData.RunTest();

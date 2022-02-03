@@ -4,7 +4,7 @@ using System.IO;
 
 
 namespace WeatherPredictionService{
-}
+} // TODO(jcollard 2022-02-03): This curly-bracket needs to go at the end of the file.
 class TestGetTemperatures
 {
     public static bool RunTest()

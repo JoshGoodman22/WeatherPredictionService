@@ -21,6 +21,11 @@ namespace WeatherPredictionService
             return lines;
         }
 
+        internal static List<string> GetTemperatures(int v)
+        {
+            throw new NotImplementedException();
+        }
+
 
         /// <summary>
         /// This method will prompt the user to enter a date.  This is the entry point. 
@@ -94,7 +99,7 @@ namespace WeatherPredictionService
 /// It will take in the List string from FilterDates.
 /// </summary>
 /// <returns></returns>
-        public static string GetTemperatures()
+        public static string GetTemperatures(List<string> averageTemp)
         {
             return null;
         }

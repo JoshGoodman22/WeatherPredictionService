@@ -2,6 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 
+namespace WeatherPredictionService
+{
+    
+}
 class TestLoadData
 {
 public static bool RunTest()

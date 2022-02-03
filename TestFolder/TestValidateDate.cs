@@ -1,14 +1,15 @@
 using System;
 using System.IO;
 
-// TODO: Add namespace
+namespace WeatherPredictionService
+{
+
+}
 class TestValidateDate
 {
     public static bool RunTest()
     {
-        // TODO(jcollard 2022-02-01): Think about different ways you might call ValidateDate
-        // public static (int MonthNum, int DayNum) ValidateDate(string UserMonth, string UserDay)
-        // 1. What happens if you pass the arguments "9", "14"? What should the return type be?
+        
 
         (int resultNum, int resultDay) = WeatherPredictionService.GettingDate.ValidateDate("9", "14");
         if (resultNum != 9 || resultDay != 14)

@@ -15,28 +15,19 @@ namespace WeatherPredictionService
 
             //(int UserDay, int UserMonth) = WeatherPredictionService.TestCreatePrediction("12", "12");
             
-            List<string> testFilteredDates = new List<string>();
-            testFilteredDates.Add("1607731200,2001-12-12 00:00:00 +0000 UTC,-28800,90274,33.779375,-118.352039,287.29,");
-            testFilteredDates.Add("1607731200,2002-12-12 00:00:00 +0000 UTC,-28800,90274,33.779375,-118.352039,287.29,");
-            testFilteredDates.Add("1607731200,2003-12-12 00:00:00 +0000 UTC,-28800,90274,33.779375,-118.352039,287.29,");
-            testFilteredDates.Add("1607731200,2004-12-12 00:00:00 +0000 UTC,-28800,90274,33.779375,-118.352039,287.29,");
-            testFilteredDates.Add("1607731200,2005-12-12 00:00:00 +0000 UTC,-28800,90274,33.779375,-118.352039,287.29,");
-            testFilteredDates.Add("1607731200,2006-12-12 00:00:00 +0000 UTC,-28800,90274,33.779375,-118.352039,287.29,");
-            List<string> totalDates = GettingDate.FilterDates(testFilteredDates, "12", "12"); // Im not sure abt this line. Am I taking in the filtered dates or am i exacting it. 
+            List<string> AverageTemp = new List<string>();
+            AverageTemp.Add("294 k");
+            AverageTemp.Add("212 k");
+            AverageTemp.Add("222 k");
+            AverageTemp.Add("201 k");
+            AverageTemp.Add("214 k");
+            
+            //List<string> Temperatures = List<string> AverageTemp;
+    
+           
+            // I need to add test here in the morning because these test aren't done. Im just super confused on this one because I cant create different ints that need to be made. And I have tried this one so many times but for some reason I cant seem get something without a lof of erros. My gettingdate.Createprediction just doesnt work for me. 
+            return false;
 
-            if (totalDates.Count != 6);
-            {
-                Console.Error.WriteLine(" There is an unusual number in the returned list...ERROR");
-                // It wont let me return false
-                
-            }
-             if (totalDates[0] != "1607731200,2001-12-12 00:00:00 +0000 UTC,-28800,90274,33.779375,-118.352039,287.29,")
-             {
-                    Console.Error.WriteLine("There is an unexpected error that happened. Dates complied ");
-                    return false;
-
-             }
-             return false;
 
 
 

@@ -13,7 +13,7 @@ public static bool RunTest()
         // Load Test CSV
         List<string> dates = WeatherPredictionService.GettingDate.LoadData("test.csv");
 
-        // This file contains 5 entrys of lines 
+        // This file contains 5 entry of lines 
         if (dates.Count != 5)
         {
             Console.Error.WriteLine(" The file test.csv should only have 5 lines but that is not the case... Error! " );

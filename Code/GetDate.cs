@@ -31,7 +31,7 @@ namespace WeatherPredictionService
         /// This method will prompt the user to enter a date.  This is the entry point. 
         /// </summary>
         /// <param name="args"></param>
-        public static void GetStarted(string[] args)
+       public static (int, int) GetStarted(string userMonth, string userDay)
         {
             //string UserMonth;
             //string UserDay;
@@ -43,6 +43,7 @@ namespace WeatherPredictionService
             //Console.WriteLine($"Okay awesome, you want to know the weather for the date {UserMonth}/{UserDay}");
 
             //List<string> data = LoadData();
+            return (0,0);
 
         }
 
@@ -99,8 +100,9 @@ namespace WeatherPredictionService
 /// It will take in the List string from FilterDates.
 /// </summary>
 /// <returns></returns>
-        public static string GetTemperatures(List<string> averageTemp)
+        public static List<double> GetTemperatures(List<string> averageTemp)
         {
+            double temp = 4.7;
             return null;
         }
 
@@ -115,6 +117,16 @@ namespace WeatherPredictionService
         return;
     }
 
+    public static double GetMedian(List<double> toAnalyze)
+    {
+        return 0;
+    }
+
+    public static double GetMode(List<double> toAnalyze)
+    {
+        return 0;
+    }
+        // create other methods for other predictions
 
 }
 }

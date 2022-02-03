@@ -28,16 +28,16 @@ namespace WeatherPredictionService
         /// <param name="args"></param>
         public static void GetStarted(string[] args)
         {
-            string UserMonth;
-            string UserDay;
+            //string UserMonth;
+            //string UserDay;
 
-            Console.WriteLine("Hello, I am your weather Prediction service - Please enter a month as an integer 1-12 for the month for ex. 01 is January");
-            UserMonth = Console.ReadLine();
-            Console.WriteLine($"Okay awesome, this is month {UserMonth} of the year. Now please enter a day from that month as an integer 1-31 for ex. 23 id the 23rd");
-            UserDay = Console.ReadLine();
-            Console.WriteLine($"Okay awesome, you want to know the weather for the date {UserMonth}/{UserDay}");
+            //Console.WriteLine("Hello, I am your weather Prediction service - Please enter a month as an integer 1-12 for the month for ex. 01 is January");
+            //UserMonth = Console.ReadLine();
+            //Console.WriteLine($"Okay awesome, this is month {UserMonth} of the year. Now please enter a day from that month as an integer 1-31 for ex. 23 id the 23rd");
+            //UserDay = Console.ReadLine();
+            //Console.WriteLine($"Okay awesome, you want to know the weather for the date {UserMonth}/{UserDay}");
 
-            List<string> data = LoadData();
+            //List<string> data = LoadData();
 
         }
 

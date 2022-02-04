@@ -35,6 +35,7 @@ namespace WeatherPredictionService
                 Console.Error.WriteLine($"An expected error has come. The Day is {userDay}");
                 return false;
             }
+            
 
 
             return true;

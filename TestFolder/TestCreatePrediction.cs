@@ -32,7 +32,7 @@ namespace WeatherPredictionService
             double mode = GettingDate.GetMode(testTemps);
             double expected = 20;
             // What if the value does not return the correct math. 
-            if (expected != 20)
+            if (expected != 20) // TODO(jcollard 2022-02-08): Do you mean `mode` instead of 20?
             {
                 Console.Error.WriteLine(" An error has occurred...This Mode is wrong");
                 return false;
@@ -42,7 +42,7 @@ namespace WeatherPredictionService
             double median = GettingDate.GetMedian(testTemps);
             expected = 20;
             // What if the value does not return the correct math. 
-            if (expected != 20)
+            if (expected != 20)// TODO(jcollard 2022-02-08): Do you mean `median` instead of 20?
             {
                 Console.Error.WriteLine(" An Error has occurred.. the Median is wrong");
                 return false;
@@ -53,7 +53,7 @@ namespace WeatherPredictionService
             double mean = GettingDate.GetMean(testTemps);
             expected = 20;
             // What if the value does not return the correct math. 
-            if (expected != 20)
+            if (expected != 20) // TODO(jcollard 2022-02-08): Do you mean `mean` instead of 20?
             {
                 Console.Error.WriteLine(" An Error has occurred.. the Average is wrong");
                 return false;
@@ -65,6 +65,7 @@ namespace WeatherPredictionService
             {
                 WeatherPredictionService.GettingDate.GetMean(FakeMean);
                 Console.Error.WriteLine(" An expected error has occurred, the number cannot be negative");
+                // TODO(jcollard 2022-02-08): Make sure you return false here.
             }
             catch
             {
@@ -72,7 +73,10 @@ namespace WeatherPredictionService
             }
 
 
-
+            // TODO(jcollard 2022-02-08): Right now you are essentially only
+            // testing that your methods only returns 20 What about a different
+            // set of inputs that makes them return different values?
+            // Keep the test case above but add a new one below.
 
 
             return true;

@@ -44,6 +44,11 @@ namespace WeatherPredictionService
                 return false;
             }
 
+            // Feedback(jcollard 2022-02-08): Everything above this looks great!
+            // I don't think you need this try / catch. (It isn't doing anything
+            // right now and I don't think there is a case where it should throw
+            // an exception.
+
             try
             {
                 userDay = 25;

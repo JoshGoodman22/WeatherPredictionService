@@ -35,7 +35,7 @@ public static bool RunTest()
             Console.Error.WriteLine(" The file loaded in was incorrect...Expected an exception from loading \"NotAEntry.csv\" ... Error!");
             return false;
         }
-        catch (Exception e)
+        catch (Exception)
         {
             //Ignore 
         }

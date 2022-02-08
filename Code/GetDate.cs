@@ -71,7 +71,7 @@ namespace WeatherPredictionService
             }
             else
             {
-                return (9, 14);
+                return (MonthNum, DayNum);
             }
         }
 
@@ -84,14 +84,25 @@ namespace WeatherPredictionService
         /// <returns></returns>
         public static List<string> FilterDates(List<string> data, string month, string day)
         {
+            // List<string> first_line_data = data[1].Split(",").ToList();
+            // string date = first_line_data[1]; 
+            List<string> results = new List<string>();
+
             foreach(string line in data)
             {
                 List<string> row = line.Split(",").ToList();
-                
+                string yearMonthDay = row[1];
+                string rowMonth = yearMonthDay.Substring(5,2);
+                string rowDay = yearMonthDay.Substring(8,2);
+
+                if (rowDay==day && rowMonth==month)
+                {
+                    results.Add(line);
+                }
                 
 
             }
-            return null;
+            return results;
         }
 
 
@@ -102,7 +113,7 @@ namespace WeatherPredictionService
 /// <returns></returns>
         public static List<double> GetTemperatures(List<string> averageTemp)
         {
-            double temp = 4.7;
+            // double temp = 4.7;
             return null;
         }
 

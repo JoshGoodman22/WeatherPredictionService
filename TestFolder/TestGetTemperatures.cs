@@ -49,7 +49,7 @@ namespace WeatherPredictionService
                 // GettingDate.GetTemperatures("12", "12");
 
             }
-            catch (Exception c)
+            catch (Exception)
             {
                 // ignore 
             }

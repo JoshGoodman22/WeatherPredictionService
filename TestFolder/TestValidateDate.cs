@@ -14,7 +14,7 @@ class TestValidateDate
         (int resultNum, int resultDay) = WeatherPredictionService.GettingDate.ValidateDate("9", "14");
         if (resultNum != 9 || resultDay != 14)
         {
-            Console.Error.WriteLine(" The date entered are not correct");
+            Console.Error.WriteLine($"The date entered are not correct...The correct dates are 9 and 14 but the values we got back were {resultNum} and {resultDay} ");
 
             return false;
         }
@@ -33,7 +33,7 @@ class TestValidateDate
             Console.Error.WriteLine(" We expected a valid date that include integers");
             return false;
         }
-        catch (Exception e)
+        catch (Exception)
         {
             // Received valid date 
         }
@@ -46,7 +46,7 @@ class TestValidateDate
             Console.Error.WriteLine(" We expected an expection from loading a month and day out of range");
             return false;
         }
-        catch (Exception e)
+        catch (Exception)
         {
             // code worked correctly
         }

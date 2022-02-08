@@ -37,23 +37,25 @@ namespace WeatherPredictionService
 
         public static void TestAll()
         {
-            bool testLoadData = TestLoadData.RunTest();
-            Console.WriteLine($" Test LoadData(filename); {testLoadData}");
-
             bool testValidateDate = TestValidateDate.RunTest();
             Console.WriteLine($" Test ValidateData(UserDate); {testValidateDate}");
 
+            // bool testLoadData = TestLoadData.RunTest();
+            // Console.WriteLine($" Test LoadData(filename); {testLoadData}");
+
+            
+
             bool testFilterDates = TestFilterDates.RunTest();
-            Console.WriteLine($" Test FilterDates(Dates)); {testValidateDate}");
+            Console.WriteLine($" Test FilterDates(Dates)); {testFilterDates}");
 
-            bool testGetStarted = TestGetStarted.RunTest();
-            Console.WriteLine($" Test GetStarted (CollectDate); {testValidateDate}");
+            // bool testGetStarted = TestGetStarted.RunTest();
+            // Console.WriteLine($" Test GetStarted (CollectDate); {testValidateDate}");
 
-            bool testGetTemperatures = TestGetTemperatures.RunTest();
-            Console.WriteLine($" Test GetTemperatures(Temperatures); {testGetTemperatures}");
+            // bool testGetTemperatures = TestGetTemperatures.RunTest();
+            // Console.WriteLine($" Test GetTemperatures(Temperatures); {testGetTemperatures}");
 
-            bool testCreatePrediction = TestCreatePrediction.RunTest();
-            Console.WriteLine($" Test CreatePredictions (Predictions) ; {testCreatePrediction}");
+            // bool testCreatePrediction = TestCreatePrediction.RunTest();
+            // Console.WriteLine($" Test CreatePredictions (Predictions) ; {testCreatePrediction}");
 
         
 

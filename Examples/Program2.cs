@@ -58,22 +58,23 @@ namespace WeatherData
 
             Console.WriteLine($"On {date} the average temp was {avg_temp} K.");
 
-            
+
 
             int userMonth = 7;
             int userDay = 5;
             // Console.WriteLine($"The date is: {yearMonthDay}");
             // Console.WriteLine($"The month is: {month}");
 
-            foreach(string line in lines)
+            foreach (string line in lines)
             {
                 List<string> row = line.Split(",").ToList();
-                date  = row[1]; // The second column has a human readable date
-                if(date.Length < 10) continue;
-                string yearMonthDay = date.Substring(0,10);
-                int month = int.Parse(yearMonthDay.Substring(5,2));
-                int day = int.Parse(yearMonthDay.Substring(8,2));
-                if(month == userMonth && day == userDay)
+                date = row[1]; // The second column has a human readable date
+                if (date.Length < 10)
+                    continue;
+                string yearMonthDay = date.Substring(0, 10);
+                int month = int.Parse(yearMonthDay.Substring(5, 2));
+                int day = int.Parse(yearMonthDay.Substring(8, 2));
+                if (month == userMonth && day == userDay)
                 {
                     Console.WriteLine(line);
                 }

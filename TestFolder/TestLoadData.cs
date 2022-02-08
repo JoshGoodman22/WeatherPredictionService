@@ -33,6 +33,7 @@ public static bool RunTest()
         {
             WeatherPredictionService.GettingDate.LoadData("NotAEntry.csv");
             Console.Error.WriteLine(" The file loaded in was incorrect...Expected an exception from loading \"NotAEntry.csv\" ... Error!");
+            return false;
         }
         catch (Exception e)
         {

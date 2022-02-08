@@ -31,7 +31,7 @@ namespace WeatherPredictionService
         /// This method will prompt the user to enter a date.  This is the entry point. 
         /// </summary>
         /// <param name="args"></param>
-       public static (int, int) GetStarted(string userMonth, string userDay)
+       public static (int, int) GetStarted()
         {
             //string UserMonth;
             //string UserDay;
@@ -125,6 +125,11 @@ namespace WeatherPredictionService
     public static double GetMode(List<double> toAnalyze)
     {
         return 0;
+    }
+
+    public static double GetMean(List<double> toAnalyze)
+    {
+        return 0; 
     }
         // create other methods for other predictions
 

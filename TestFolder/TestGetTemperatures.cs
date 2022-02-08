@@ -31,26 +31,29 @@ namespace WeatherPredictionService
                 return false;
 
             }
+            // If the first temp from selected data is not correct. 
             if (totalDates[0] != 287.29)
             {
                 Console.Error.WriteLine("There is an unexpected error that happened. Dates complied ");
                 return false;
 
             }
+            // If the first temp from line 1 in not correct. 
             if (totalDates[1] != 289.28)
             {
-                    // add stuff 
+                    Console.Error.WriteLine(" There is an expected error...");
+                    return false;
             }
             try
             {
-                // GettingDate.CreatePrediction(testFilteredDates, "12", "12");
+                // GettingDate.GetTemperatures("12", "12");
 
             }
             catch (Exception c)
             {
                 // ignore 
             }
-            return false;
+            return true;
 
 
 

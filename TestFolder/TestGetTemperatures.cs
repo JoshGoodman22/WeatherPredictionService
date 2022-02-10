@@ -39,7 +39,7 @@ namespace WeatherPredictionService
 
             }
             // If the first temp from line 1 in not correct. 
-            if (totalDates[1] != 289.28)
+            if (totalDates[1] != 289.29)
             {
                     Console.Error.WriteLine(" There is an expected error...");
                     return false;

@@ -84,6 +84,17 @@ namespace WeatherPredictionService
         /// <returns></returns>
         public static List<string> FilterDates(List<string> data, string month, string day)
         {
+            int MonthNum;
+            if(int.TryParse(month, out MonthNum) == false || month.Length != 2 || MonthNum >= 13)
+            {
+                throw new Exception($" Cannot use invalid {month}");
+            }
+            
+            int dayNum;
+            if(int.TryParse(day, out dayNum) == false)
+            {
+                throw new Exception($"Cannot use invalid date {day}");
+            }
             // List<string> first_line_data = data[1].Split(",").ToList();
             // string date = first_line_data[1]; 
             List<string> results = new List<string>();
@@ -99,7 +110,7 @@ namespace WeatherPredictionService
                 {
                     results.Add(line);
                 }
-                
+
 
             }
             return results;
@@ -111,10 +122,18 @@ namespace WeatherPredictionService
 /// It will take in the List string from FilterDates.
 /// </summary>
 /// <returns></returns>
-        public static List<double> GetTemperatures(List<string> averageTemp)
+        public static List<double> GetTemperatures(List<string> csvData)
         {
-            // double temp = 4.7;
-            return null;
+            List<double> totalDates = new List<double>();
+            foreach (string line in csvData)
+            {
+                List<string> row = line.Split(",").ToList();
+                double AvgTemp = double.Parse(row[6]);
+                totalDates.Add(AvgTemp);
+            }
+
+
+            return totalDates;
         }
 
     

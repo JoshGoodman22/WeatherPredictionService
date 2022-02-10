@@ -51,8 +51,8 @@ namespace WeatherPredictionService
             // bool testGetStarted = TestGetStarted.RunTest();
             // Console.WriteLine($" Test GetStarted (CollectDate); {testValidateDate}");
 
-            // bool testGetTemperatures = TestGetTemperatures.RunTest();
-            // Console.WriteLine($" Test GetTemperatures(Temperatures); {testGetTemperatures}");
+             bool testGetTemperatures = TestGetTemperatures.RunTest();
+             Console.WriteLine($" Test GetTemperatures(Temperatures); {testGetTemperatures}");
 
             // bool testCreatePrediction = TestCreatePrediction.RunTest();
             // Console.WriteLine($" Test CreatePredictions (Predictions) ; {testCreatePrediction}");

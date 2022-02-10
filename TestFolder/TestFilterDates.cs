@@ -43,16 +43,6 @@ class TestFilterDates
           // Ignore
         }
 
-        try 
-        {
-            GettingDate.FilterDates(testData, "04", "01"); // TODO(jcollard 2022-02-03): Why is this an error? This should probalby just return a list with no data in it.
-            Console.Error.WriteLine(" There is no error");
-        }
-        catch (Exception)
-        {
-            // Ignore this 
-        }
-
         // TODO(jcollard 2022-02-03): Add a test for 08-01.
 
         return true;

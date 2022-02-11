@@ -33,16 +33,16 @@ namespace WeatherPredictionService
         /// <param name="args"></param>
        public static (int, int) GetStarted()
         {
-            //string UserMonth;
-            //string UserDay;
+            string UserMonth;
+            string UserDay;
 
-            //Console.WriteLine("Hello, I am your weather Prediction service - Please enter a month as an integer 1-12 for the month for ex. 01 is January");
-            //UserMonth = Console.ReadLine();
-            //Console.WriteLine($"Okay awesome, this is month {UserMonth} of the year. Now please enter a day from that month as an integer 1-31 for ex. 23 id the 23rd");
-            //UserDay = Console.ReadLine();
-            //Console.WriteLine($"Okay awesome, you want to know the weather for the date {UserMonth}/{UserDay}");
+            Console.WriteLine("Hello, I am your weather Prediction service - Please enter a month as an integer 1-12 for the month for ex. 01 is January");
+            UserMonth = Console.ReadLine();
+            Console.WriteLine($"Okay awesome, this is month {UserMonth} of the year. Now please enter a day from that month as an integer 1-31 for ex. 23 id the 23rd");
+            UserDay = Console.ReadLine();
+            Console.WriteLine($"Okay awesome, you want to know the weather for the date {UserMonth}/{UserDay}");
 
-            //List<string> data = LoadData();
+            List<string> data = LoadData("HistoricalWeatherDataLA.csv");
             return (0,0);
 
         }
@@ -146,22 +146,39 @@ namespace WeatherPredictionService
     {
         return;
     }
-
+/// <summary>
+/// /// This will take in the list of doubles from get temperatures and perform simple math functions to get a mode. This will produce a double that wil shown in create prediction. 
+/// </summary>
+/// <param name="toAnalyze"></param>
+/// <returns></returns>
     public static double GetMedian(List<double> toAnalyze)
     {
         return 0;
     }
 
+
+/// <summary>
+/// /// This will take in the list of doubles from get temperatures and perform simple math functions to get a median. This will produce a double that wil shown in create prediction. 
+/// </summary>
+/// <param name="toAnalyze"></param>
+/// <returns></returns>
     public static double GetMode(List<double> toAnalyze)
     {
         return 0;
     }
 
+
+/// <summary>
+/// This will take in the list of doubles from get temperatures and perform simple math functions to get a mean. This will produce a double that wil shown in create prediction. 
+/// </summary>
+/// <param name="toAnalyze"></param>
+/// <returns></returns>
     public static double GetMean(List<double> toAnalyze)
     {
+      
         return 0; 
     }
-        // create other methods for other predictions
+      
 
 }
 }

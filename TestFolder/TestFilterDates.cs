@@ -43,8 +43,6 @@ class TestFilterDates
           // Ignore
         }
 
-        // TODO(jcollard 2022-02-03): Add a test for 08-01.
-
         return true;
 
     }

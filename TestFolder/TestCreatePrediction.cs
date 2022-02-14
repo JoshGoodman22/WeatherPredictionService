@@ -32,7 +32,7 @@ namespace WeatherPredictionService
             double mode = GettingDate.GetMode(testTemps);
             double expected = 20;
             // What if the value does not return the correct math. 
-            if (expected != mode) 
+            if (expected != mode)
             {
                 Console.Error.WriteLine(" An error has occurred...This Mode is wrong");
                 return false;
@@ -53,7 +53,7 @@ namespace WeatherPredictionService
             double mean = GettingDate.GetMean(testTemps);
             expected = 20;
             // What if the value does not return the correct math. 
-            if (expected != mean) 
+            if (expected != mean)
             {
                 Console.Error.WriteLine(" An Error has occurred.. the Average is wrong");
                 return false;
@@ -71,6 +71,54 @@ namespace WeatherPredictionService
             {
                 // Ignore this
             }
+            List<double> FakeMean2 = new List<double>(84);
+            List<double> testTemps2 = new List<double>();
+            testTemps.Add(70);
+            testTemps.Add(91);
+            testTemps.Add(81);
+            testTemps.Add(95);
+        
+
+            double mode2 = GettingDate.GetMode(testTemps);
+            double expected2 = 84;
+
+            if (expected2 != 84)
+            {
+                Console.Error.WriteLine(" There has been an error in the math and a incorrect number has been printed please try again");
+                return false;
+
+            }
+            try
+            {
+                WeatherPredictionService.GettingDate.GetMean(FakeMean2);
+                Console.Error.WriteLine("There is an error that was expected but did not occur");
+                return false;
+            }
+            catch
+            {
+                // ignore 
+            }
+
+
+
+
+
+            // List<double> Negativeinput = new List<double>(-10);
+            // Negativeinput = int.Parse(-10);
+            // Negativeinput.Add(-10);
+
+
+            // double input = GettingDate.GetMean(Negativeinput);
+            // if (Negativeinput = -10)
+            // {
+            //         Console.Error.WriteLine("Cannot compute a Mean that included a negative number");
+            //         return false;
+
+            // }
+
+
+
+
 
 
             // TODO(jcollard 2022-02-08): Right now you are essentially only

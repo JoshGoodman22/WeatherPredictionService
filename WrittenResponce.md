@@ -149,7 +149,8 @@ Describes in general what the identified procedure does and how it contributes t
 
 Explains in detailed steps how the algorithm implemented in the identified procedure works. Your explanation must be detailed enough for someone else to recreate it.
 
-**TODO: In English, explain step by step what your procedure does. Be sure to use the word `Selection` and `Iteration` to explain what it does.**
+
+- FilterDates is a simple method that begins by validating user input by making sure the input is > 13 and has 2 digits. this ensures that the data extracted will be able to match with data in the CSV.  It then creates a new string called results. This string is iterated until the desired string matching data will be pulled from each line of data. Those "important" lines of data are found in the strings Rowday and Rowmonth. Then the method selects and ensures that the user input matches the data from each line pulled and that line that contains the important data is then added to the string "results" to be used later. 
 
 ## 3d
 
@@ -177,7 +178,7 @@ This test that the method will fail when the input is null by throwing an except
 
 Condition(s) tested by the second call:
 
-This test that the mehtod runs when the input is valid. 
+This test that the method runs when the input is valid. 
 
 ### 3d iii.
 

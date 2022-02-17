@@ -31,7 +31,7 @@ namespace WeatherPredictionService
         /// This method will prompt the user to enter a date.  This is the entry point. 
         /// </summary>
         /// <param name="args"></param>
-       public static (int, int) GetStarted()
+        public static (int, int) GetStarted()
         {
             string UserMonth;
             string UserDay;
@@ -43,8 +43,13 @@ namespace WeatherPredictionService
             Console.WriteLine($"Okay awesome, you want to know the weather for the date {UserMonth}/{UserDay}");
 
             List<string> data = LoadData("HistoricalWeatherDataLA.csv");
-            return (0,0);
+            return (0, 0);
 
+        }
+
+        internal static void CreatePrediction()
+        {
+            throw new NotImplementedException();
         }
 
         /// <summary>    
@@ -85,13 +90,13 @@ namespace WeatherPredictionService
         public static List<string> FilterDates(List<string> data, string month, string day)
         {
             int MonthNum;
-            if(int.TryParse(month, out MonthNum) == false || month.Length != 2 || MonthNum >= 13)
+            if (int.TryParse(month, out MonthNum) == false || month.Length != 2 || MonthNum >= 13)
             {
                 throw new Exception($" Cannot use invalid {month}");
             }
-            
+
             int dayNum;
-            if(int.TryParse(day, out dayNum) == false)
+            if (int.TryParse(day, out dayNum) == false)
             {
                 throw new Exception($"Cannot use invalid date {day}");
             }
@@ -99,14 +104,14 @@ namespace WeatherPredictionService
             // string date = first_line_data[1]; 
             List<string> results = new List<string>();
 
-            foreach(string line in data)
+            foreach (string line in data)
             {
                 List<string> row = line.Split(",").ToList();
                 string yearMonthDay = row[1];
-                string rowMonth = yearMonthDay.Substring(5,2);
-                string rowDay = yearMonthDay.Substring(8,2);
+                string rowMonth = yearMonthDay.Substring(5, 2);
+                string rowDay = yearMonthDay.Substring(8, 2);
 
-                if (rowDay==day && rowMonth==month)
+                if (rowDay == day && rowMonth == month)
                 {
                     results.Add(line);
                 }
@@ -117,11 +122,11 @@ namespace WeatherPredictionService
         }
 
 
-/// <summary>
-/// This method will take the lines given by FilterDates and extract a list of temperatures from those dates that will then be used to calculate the Average, Mean, Median, Mode. 
-/// It will take in the List string from FilterDates.
-/// </summary>
-/// <returns></returns>
+        /// <summary>
+        /// This method will take the lines given by FilterDates and extract a list of temperatures from those dates that will then be used to calculate the Average, Mean, Median, Mode. 
+        /// It will take in the List string from FilterDates.
+        /// </summary>
+        /// <returns></returns>
         public static List<double> GetTemperatures(List<string> csvData)
         {
             List<double> totalDates = new List<double>();
@@ -136,49 +141,73 @@ namespace WeatherPredictionService
             return totalDates;
         }
 
-    
 
-    /// <summary>
-    /// This Method will use the temperatures From FilterDates() to create an average, mode, mean, and median. It will then display the information to the user
-    /// This methos will take in and read the string of temperatures from GetTemperatures 
-    /// </summary>
-    public static void CreatePrediction()
-    {
-        return;
+
+        /// <summary>
+        /// This Method will use the temperatures From FilterDates() to create an average, mode, mean, and median. It will then display the information to the user
+        /// This methos will take in and read the string of temperatures from GetTemperatures 
+        /// </summary>
+        public static void CreatePrediction(string filename, string Userday, string Usermonth)
+        {
+            List<string> csvData = LoadData("HistoricalWeatherDataLA.csv"); // Loading in the data
+            GetStarted(); // getting user input 
+            (int validMonth, int validDay) = ValidateDate(Usermonth, Userday); // Validating the date and getting ints to be put into FilerDates 
+            List<string> FilteredData = FilterDates(csvData, Usermonth, Userday); // Filtering data in CSV 
+            List<double> FinalTemps = GetTemperatures(FilteredData); // 
+            double median = GetMedian(FinalTemps);
+            return;
+        }
+        /// <summary>
+        /// /// This will take in the list of doubles from get temperatures and perform simple math functions to get a mode. This will produce a double that wil shown in create prediction. 
+        /// </summary>
+        /// <param name="toAnalyze"></param>
+        /// <returns></returns>
+        public static double GetMedian(List<double> toAnalyze)
+        {
+             toAnalyze.Sort();
+             int mid = toAnalyze.Count / 2;
+            return toAnalyze[mid];
+        }
+
+
+        /// <summary>
+        /// /// This will take in the list of doubles from get temperatures and perform simple math functions to get a median. This will produce a double that wil shown in create prediction. 
+        /// </summary>
+        /// <param name="toAnalyze"></param>
+        /// <returns></returns>
+        public static double GetMode(List<double> toAnalyze)
+        {
+            List<double> Mode = new List<double>();
+            toAnalyze.Sort();
+            foreach ( double temps in toAnalyze) // Loopin
+            {
+
+
+            }
+
+            return 0;
+        }
+
+
+        /// <summary>
+        /// This will take in the list of doubles from get temperatures and perform simple math functions to get a mean. This will produce a double that wil shown in create prediction. 
+        /// </summary>
+        /// <param name="toAnalyze"></param>
+        /// <returns></returns>
+        public static double GetMean(List<double> toAnalyze)
+        {
+            List<double> Mean = new List<double>();
+            double allTemps = 0;
+            foreach (double temp in toAnalyze) // Loopin
+             {
+                 allTemps = temp + allTemps;
+
+
+             }
+
+            return allTemps/toAnalyze.Count;
+        }
+
+
     }
-/// <summary>
-/// /// This will take in the list of doubles from get temperatures and perform simple math functions to get a mode. This will produce a double that wil shown in create prediction. 
-/// </summary>
-/// <param name="toAnalyze"></param>
-/// <returns></returns>
-    public static double GetMedian(List<double> toAnalyze)
-    {
-        return 0;
-    }
-
-
-/// <summary>
-/// /// This will take in the list of doubles from get temperatures and perform simple math functions to get a median. This will produce a double that wil shown in create prediction. 
-/// </summary>
-/// <param name="toAnalyze"></param>
-/// <returns></returns>
-    public static double GetMode(List<double> toAnalyze)
-    {
-        return 0;
-    }
-
-
-/// <summary>
-/// This will take in the list of doubles from get temperatures and perform simple math functions to get a mean. This will produce a double that wil shown in create prediction. 
-/// </summary>
-/// <param name="toAnalyze"></param>
-/// <returns></returns>
-    public static double GetMean(List<double> toAnalyze)
-    {
-      
-        return 0; 
-    }
-      
-
-}
 }

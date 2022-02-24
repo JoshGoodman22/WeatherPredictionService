@@ -13,7 +13,7 @@ namespace WeatherPredictionService
         static void Main()
         {
             // LoadData(string filename);
-            GetStarted();
+            GettingDate.GetStarted();
             // ValidateDate();
             // FilterDates( List<string> data, string month, string day);
             // ValidateDate(string UserMonth, string UserDay)

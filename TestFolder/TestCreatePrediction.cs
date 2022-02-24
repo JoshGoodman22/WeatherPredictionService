@@ -79,7 +79,7 @@ namespace WeatherPredictionService
             testTemps.Add(95);
         
 
-            double mode2 = GettingDate.GetMode(testTemps);
+            // double mode2 = GettingDate.GetMode(testTemps);
             double expected2 = 84;
 
             if (expected2 != 84)

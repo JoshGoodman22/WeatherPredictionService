@@ -47,10 +47,7 @@ namespace WeatherPredictionService
 
         }
 
-        internal static void CreatePrediction()
-        {
-            throw new NotImplementedException();
-        }
+
 
         /// <summary>    
         /// "Given the users string input for month and day, checks to make sure it is a valid date. If it is not, an exception is thrown.
@@ -79,6 +76,8 @@ namespace WeatherPredictionService
                 return (MonthNum, DayNum);
             }
         }
+
+
 
         /// <summary>
         /// This Method will will filter and match the UserMonth and UserDay to the dates from the CVS. It will return a string of dates that matched the users dates.
@@ -155,6 +154,8 @@ namespace WeatherPredictionService
             List<string> FilteredData = FilterDates(csvData, Usermonth, Userday); // Filtering data in CSV 
             List<double> FinalTemps = GetTemperatures(FilteredData); // 
             double median = GetMedian(FinalTemps);
+            double mode = GetMode(FinalTemps);
+            double mean = GetMean(FinalTemps);
             return;
         }
         /// <summary>
@@ -164,8 +165,8 @@ namespace WeatherPredictionService
         /// <returns></returns>
         public static double GetMedian(List<double> toAnalyze)
         {
-             toAnalyze.Sort();
-             int mid = toAnalyze.Count / 2;
+            toAnalyze.Sort();
+            int mid = toAnalyze.Count / 2;
             return toAnalyze[mid];
         }
 
@@ -177,15 +178,47 @@ namespace WeatherPredictionService
         /// <returns></returns>
         public static double GetMode(List<double> toAnalyze)
         {
-            List<double> Mode = new List<double>();
+            
             toAnalyze.Sort();
-            foreach ( double temps in toAnalyze) // Loopin
+            double candidateMode = toAnalyze[0]; // The value we are currently counting
+            int candidateCount = 0; // Tracks the number of times we have seen "candidateMode"
+            double finalMode = toAnalyze[0]; // The value we have seen the most times so far (at the end this will be the mode we return)
+            int finalCount = 0; // The count for finalMode
+
+            // 3. We iterate through the elements of the list and count the values:
+            foreach (double tempToCheck in toAnalyze) // Loopin
             {
 
+                // 4. We check to see if the tempToCheck is the same value as the candidateMode.
+                //    If it is, we need to increment candidateCount
+                if (tempToCheck == candidateMode)
+                {
+                    candidateCount ++;
+                }
+                else
+                {
+                    candidateMode = candidateCount;
+                }
+
+                
+                if ( candidateMode > finalMode )
+                {
+                    finalMode = finalCount;
+                }
+                
+                candidateMode = tempToCheck;
+                candidateCount = 0;
+                
+                // 5. ELSE that means we have finished counting all of the
+                //    values that are equal to candidateMode
+                // 5a. We need to check to see if the candidate was counted more times than the current finalMode
+                // 5b. If it was, we update finalMode and finalCount
+                // 5c. Then, we **always** (no else) set the candidateMode to be the tempToCheck and we reset candidateCount to 1 (since we have seen the new value once)
 
             }
 
-            return 0;
+            // 6. Finally, when we have finished iterating through all of the values, we know that finalMode is the mode of the list
+            return finalMode;
         }
 
 
@@ -199,13 +232,13 @@ namespace WeatherPredictionService
             List<double> Mean = new List<double>();
             double allTemps = 0;
             foreach (double temp in toAnalyze) // Loopin
-             {
-                 allTemps = temp + allTemps;
+            {
+                allTemps = temp + allTemps;
 
 
-             }
+            }
 
-            return allTemps/toAnalyze.Count;
+            return allTemps / toAnalyze.Count;
         }
 
 

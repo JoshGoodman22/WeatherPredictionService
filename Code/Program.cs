@@ -12,17 +12,21 @@ namespace WeatherPredictionService
     {
         static void Main()
         {
+            (string month, string day) = GettingDate.GetStarted(); // getting user input 
+
+            GettingDate.CreatePrediction("HistoricalWeatherDataLA.csv", month, day);
             // LoadData(string filename);
-            GettingDate.GetStarted();
+            // GettingDate.GetStarted();
             // ValidateDate();
             // FilterDates( List<string> data, string month, string day);
             // ValidateDate(string UserMonth, string UserDay)
+
            
             
             
         }
 
-        public static (int, int) GetStarted()
+        public static (string, string) GetStarted()
             {
                 string UserMonth;
                 string UserDay;
@@ -34,7 +38,7 @@ namespace WeatherPredictionService
                 Console.WriteLine($"Okay awesome, you want to know the weather for the date {UserMonth}/{UserDay}");
 
                 List<string> data = LoadData("HistoricalWeatherDataLA.csv");
-                return (0, 0);
+                return (UserMonth, UserDay);
             }
             public static List<string> LoadData(string filename)
             {

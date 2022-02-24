@@ -31,7 +31,7 @@ namespace WeatherPredictionService
         /// This method will prompt the user to enter a date.  This is the entry point. 
         /// </summary>
         /// <param name="args"></param>
-        public static (int, int) GetStarted()
+        public static (string, string) GetStarted()
         {
             string UserMonth;
             string UserDay;
@@ -42,8 +42,7 @@ namespace WeatherPredictionService
             UserDay = Console.ReadLine();
             Console.WriteLine($"Okay awesome, you want to know the weather for the date {UserMonth}/{UserDay}");
 
-            List<string> data = LoadData("HistoricalWeatherDataLA.csv");
-            return (0, 0);
+            return (UserMonth, UserDay);
 
         }
 
@@ -105,15 +104,18 @@ namespace WeatherPredictionService
 
             foreach (string line in data)
             {
-                List<string> row = line.Split(",").ToList();
-                string yearMonthDay = row[1];
-                string rowMonth = yearMonthDay.Substring(5, 2);
-                string rowDay = yearMonthDay.Substring(8, 2);
+                try {
+                    List<string> row = line.Split(",").ToList();
+                    string yearMonthDay = row[1];
+                    int rowYear = int.Parse(yearMonthDay.Substring(0,4));
+                    string rowMonth = yearMonthDay.Substring(5, 2);
+                    string rowDay = yearMonthDay.Substring(8, 2);
 
-                if (rowDay == day && rowMonth == month)
-                {
-                    results.Add(line);
-                }
+                    if (rowDay == day && rowMonth == month && rowYear > 2000)
+                    {
+                        results.Add(line);
+                    }
+                } catch {}
 
 
             }
@@ -146,17 +148,25 @@ namespace WeatherPredictionService
         /// This Method will use the temperatures From FilterDates() to create an average, mode, mean, and median. It will then display the information to the user
         /// This methos will take in and read the string of temperatures from GetTemperatures 
         /// </summary>
-        public static void CreatePrediction(string filename, string Userday, string Usermonth)
+        public static void CreatePrediction(string filename, string Usermonth, string Userday)
         {
             List<string> csvData = LoadData("HistoricalWeatherDataLA.csv"); // Loading in the data
-            GetStarted(); // getting user input 
             (int validMonth, int validDay) = ValidateDate(Usermonth, Userday); // Validating the date and getting ints to be put into FilerDates 
             List<string> FilteredData = FilterDates(csvData, Usermonth, Userday); // Filtering data in CSV 
             List<double> FinalTemps = GetTemperatures(FilteredData); // 
-            double median = GetMedian(FinalTemps);
-            double mode = GetMode(FinalTemps);
-            double mean = GetMean(FinalTemps);
+            double median = KtoF(GetMedian(FinalTemps));
+            double mode = KtoF(GetMode(FinalTemps));
+            double mean = KtoF(GetMean(FinalTemps));
+            Console.WriteLine($" Calculation COMPLETE!!!! On the Date {Usermonth},{Userday} it has historically been {mean} degrees. It is most often {mode} degrees. Fun fact! In the middle 1900s it was most commonly {median}");
             return;
+        }
+
+        public static double KtoF(double k) 
+        { 
+          var fahrenheit = ((k-273.15) * 9) / 5 + 32;
+
+        
+            return fahrenheit;
         }
         /// <summary>
         /// /// This will take in the list of doubles from get temperatures and perform simple math functions to get a mode. This will produce a double that wil shown in create prediction. 
@@ -178,7 +188,7 @@ namespace WeatherPredictionService
         /// <returns></returns>
         public static double GetMode(List<double> toAnalyze)
         {
-            
+
             toAnalyze.Sort();
             double candidateMode = toAnalyze[0]; // The value we are currently counting
             int candidateCount = 0; // Tracks the number of times we have seen "candidateMode"
@@ -193,22 +203,21 @@ namespace WeatherPredictionService
                 //    If it is, we need to increment candidateCount
                 if (tempToCheck == candidateMode)
                 {
-                    candidateCount ++;
+                    candidateCount++;
                 }
                 else
                 {
-                    candidateMode = candidateCount;
+                    candidateMode = tempToCheck;
+                    candidateCount = 1;
                 }
 
-                
-                if ( candidateMode > finalMode )
+
+                if (candidateCount > finalCount)
                 {
-                    finalMode = finalCount;
+                    finalCount = candidateCount;
+                    finalMode = candidateMode;
                 }
-                
-                candidateMode = tempToCheck;
-                candidateCount = 0;
-                
+
                 // 5. ELSE that means we have finished counting all of the
                 //    values that are equal to candidateMode
                 // 5a. We need to check to see if the candidate was counted more times than the current finalMode

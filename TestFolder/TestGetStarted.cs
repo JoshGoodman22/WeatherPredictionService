@@ -26,7 +26,7 @@ namespace WeatherPredictionService
             Console.WriteLine(" Enter Banana and it will say invalid. Please eneter a new date");
             Console.WriteLine("4. Enter a valid day '25'. This should be successful.");
 
-            (userDay, userMonth) = GettingDate.GetStarted();
+            // (userDay, userMonth) = GettingDate.GetStarted();
             
             
 

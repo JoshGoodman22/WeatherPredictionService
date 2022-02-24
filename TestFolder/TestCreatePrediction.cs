@@ -18,7 +18,7 @@ namespace WeatherPredictionService
 
             //(int UserDay, int UserMonth) = WeatherPredictionService.TestCreatePrediction("12", "12");
 
-            GettingDate.CreatePrediction();
+           // GettingDate.CreatePrediction();
 
             //TODO: Create 3 methods:
             // 1. GetMode(List<double> temps)

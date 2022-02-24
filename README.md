@@ -17,6 +17,12 @@ ___________________________________________________
 - This second part of the method will loop through the first list and generate a second list based off the filtered dates dor list 1. List 1 will start full and List 2 will start empty and will be created after List 1 is looped thorough. Then after looping through list 2, a GetPrediction method will create predictions and print out the prediction of the Average, Mode, Mean, Median temps for that date to the user based off data from list 2. 
 
 
+## Detailed Overview of New Method
+![Image Text](GetMean.png)
+- In this Method, the program will compute a mean off the filtered temperatures. The method begins by creating a double called "mean". Then the double "allTemps" will be sent to 0. Then using a foreach loop that runs through all temps in to analyze will set AllTemps to the total temperature of all the temps. Then the method will return the final temperature divided by the amount of temps in Toanalyzed. 
 
 
+## HighLevel Overview of CreatePred
+![Image Text](CreatePred.png)
+- In this method, in order to create a prediction the csv will be loaded and put into the method. Then the method will use GetStarted to get a date from the user. Then validate date will ensure the date works and can be read by the program. User date will then be matched with dates in the CVS using Filterdates. Then GetTemperature will draw out the temps from the filtered dates. With all the temperatures, GetMean, GetMode, and GetMedian will calculate and create a prediction. 
 

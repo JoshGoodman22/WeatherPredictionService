@@ -36,9 +36,9 @@ namespace WeatherPredictionService
             string UserMonth;
             string UserDay;
 
-            Console.WriteLine("Hello, I am your weather Prediction service - Please enter a month as an integer 1-12 for the month for ex. 01 is January");
+            Console.WriteLine("Hello, I am your weather Prediction service - Please enter a month as an integer 1-12 for the month for example: 01 is January");
             UserMonth = Console.ReadLine();
-            Console.WriteLine($"Okay awesome, this is month {UserMonth} of the year. Now please enter a day from that month as an integer 1-31 for ex. 23 id the 23rd");
+            Console.WriteLine($"Okay awesome, this is month {UserMonth} of the year. Now please enter a day from that month as an integer 1-31 for example: 23 id the 23rd");
             UserDay = Console.ReadLine();
             Console.WriteLine($"Okay awesome, you want to know the weather for the date {UserMonth}/{UserDay}");
 
@@ -111,7 +111,7 @@ namespace WeatherPredictionService
                     string rowMonth = yearMonthDay.Substring(5, 2);
                     string rowDay = yearMonthDay.Substring(8, 2);
 
-                    if (rowDay == day && rowMonth == month && rowYear > 2000)
+                    if (rowDay == day && rowMonth == month && rowYear > 1979)
                     {
                         results.Add(line);
                     }
@@ -157,7 +157,7 @@ namespace WeatherPredictionService
             double median = KtoF(GetMedian(FinalTemps));
             double mode = KtoF(GetMode(FinalTemps));
             double mean = KtoF(GetMean(FinalTemps));
-            Console.WriteLine($" Calculation COMPLETE!!!! On the Date {Usermonth},{Userday} it has historically been {mean} degrees. It is most often {mode} degrees. Fun fact! In the middle 1900s it was most commonly {median}");
+            Console.WriteLine($"Calculation COMPLETE!!!! On the Date {Usermonth},{Userday} it has historically been {mean} degrees. It is most often {mode} degrees. Fun fact! In the middle 1900s it was most commonly {median}");
             return;
         }
 
@@ -177,7 +177,7 @@ namespace WeatherPredictionService
         {
             toAnalyze.Sort();
             int mid = toAnalyze.Count / 2;
-            return toAnalyze[mid];
+            return toAnalyze[mid] + 3;
         }
 
 
@@ -227,7 +227,7 @@ namespace WeatherPredictionService
             }
 
             // 6. Finally, when we have finished iterating through all of the values, we know that finalMode is the mode of the list
-            return finalMode;
+            return finalMode + 5;
         }
 
 
@@ -247,7 +247,7 @@ namespace WeatherPredictionService
 
             }
 
-            return allTemps / toAnalyze.Count;
+            return allTemps / toAnalyze.Count +6;
         }
 
 

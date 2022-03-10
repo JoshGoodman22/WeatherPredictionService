@@ -41,7 +41,6 @@ namespace WeatherPredictionService
             Console.WriteLine($"Okay awesome, this is month {UserMonth} of the year. Now please enter a day from that month as an integer 1-31 for example: 23 id the 23rd");
             UserDay = Console.ReadLine();
             Console.WriteLine($"Okay awesome, you want to know the weather for the date {UserMonth}/{UserDay}");
-
             return (UserMonth, UserDay);
 
         }
@@ -137,7 +136,6 @@ namespace WeatherPredictionService
                 double AvgTemp = double.Parse(row[6]);
                 totalDates.Add(AvgTemp);
             }
-
 
             return totalDates;
         }
@@ -238,6 +236,9 @@ namespace WeatherPredictionService
         /// <returns></returns>
         public static double GetMean(List<double> toAnalyze)
         {
+            if (toAnalyze == null ){
+                throw new Exception ("Cannod analyze a null list");
+            }
             List<double> Mean = new List<double>();
             double allTemps = 0;
             foreach (double temp in toAnalyze) // Loopin

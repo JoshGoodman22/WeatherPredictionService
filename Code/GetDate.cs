@@ -36,7 +36,7 @@ namespace WeatherPredictionService
             string UserMonth;
             string UserDay;
 
-            Console.WriteLine("Hello, I am your weather Prediction service - Please enter a month as an integer 1-12 for the month for example: 01 is January");
+            Console.WriteLine("Hello, I am your weather Prediction service.\nI use data from the last 42 years to create a prediction about a specific date.\nPlease enter a month as an integer 1-12 for the month for example: 01 is January");
             UserMonth = Console.ReadLine();
             Console.WriteLine($"Okay awesome, this is month {UserMonth} of the year. Now please enter a day from that month as an integer 1-31 for example: 23 id the 23rd");
             UserDay = Console.ReadLine();
@@ -103,10 +103,11 @@ namespace WeatherPredictionService
 
             foreach (string line in data)
             {
-                try {
+                try
+                {
                     List<string> row = line.Split(",").ToList();
                     string yearMonthDay = row[1];
-                    int rowYear = int.Parse(yearMonthDay.Substring(0,4));
+                    int rowYear = int.Parse(yearMonthDay.Substring(0, 4));
                     string rowMonth = yearMonthDay.Substring(5, 2);
                     string rowDay = yearMonthDay.Substring(8, 2);
 
@@ -114,7 +115,8 @@ namespace WeatherPredictionService
                     {
                         results.Add(line);
                     }
-                } catch {}
+                }
+                catch { }
 
 
             }
@@ -139,6 +141,29 @@ namespace WeatherPredictionService
 
             return totalDates;
         }
+        public static List<double> Getwind(List<string> csvData)
+        {
+            if (csvData == null)
+            {
+                throw new Exception("The CSV data did not load correctly");
+            }
+            List<double> WindDec = new List<double>();
+           
+            foreach (string line in csvData)
+            {
+                try
+                {
+                 List<string> row = line.Split(",").ToList();
+                 double wind = double.Parse(row[16]);  
+                 WindDec.Add(wind);
+                }
+                catch{}
+            }
+            
+
+
+            return WindDec;
+        }
 
 
 
@@ -151,19 +176,21 @@ namespace WeatherPredictionService
             List<string> csvData = LoadData("HistoricalWeatherDataLA.csv"); // Loading in the data
             (int validMonth, int validDay) = ValidateDate(Usermonth, Userday); // Validating the date and getting ints to be put into FilerDates 
             List<string> FilteredData = FilterDates(csvData, Usermonth, Userday); // Filtering data in CSV 
-            List<double> FinalTemps = GetTemperatures(FilteredData); // 
+            List<double> FinalTemps = GetTemperatures(FilteredData); //
+            List<double> WindDec = Getwind(FilteredData);
             double median = KtoF(GetMedian(FinalTemps));
             double mode = KtoF(GetMode(FinalTemps));
             double mean = KtoF(GetMean(FinalTemps));
-            Console.WriteLine($"Calculation COMPLETE!!!! On the Date {Usermonth},{Userday} it has historically been {mean} degrees. It is most often {mode} degrees. Fun fact! In the middle 1900s it was most commonly {median}");
+            double wind = (PredictWind(WindDec));
+            Console.WriteLine($"Calculation COMPLETE!!!! On the Date {Usermonth},{Userday} it has historically been {mean} degrees.\nIt is most often {mode} degrees.\nFun fact! In the middle 1900s it was most commonly {median}.\nOn this day, the wind speed has been {wind}");
             return;
         }
 
-        public static double KtoF(double k) 
-        { 
-          var fahrenheit = ((k-273.15) * 9) / 5 + 32;
+        public static double KtoF(double k)
+        {
+            var fahrenheit = ((k - 273.15) * 9) / 5 + 32;
 
-        
+
             return fahrenheit;
         }
         /// <summary>
@@ -173,6 +200,10 @@ namespace WeatherPredictionService
         /// <returns></returns>
         public static double GetMedian(List<double> toAnalyze)
         {
+            if (toAnalyze.Count == 0)
+            {
+                throw new Exception("The list is empty. The error complied wrong");
+            }
             toAnalyze.Sort();
             int mid = toAnalyze.Count / 2;
             return toAnalyze[mid] + 3;
@@ -236,8 +267,9 @@ namespace WeatherPredictionService
         /// <returns></returns>
         public static double GetMean(List<double> toAnalyze)
         {
-            if (toAnalyze == null ){
-                throw new Exception ("Cannod analyze a null list");
+            if (toAnalyze == null)
+            {
+                throw new Exception("Cannod analyze a null list");
             }
             List<double> Mean = new List<double>();
             double allTemps = 0;
@@ -248,7 +280,24 @@ namespace WeatherPredictionService
 
             }
 
-            return allTemps / toAnalyze.Count +6;
+            return allTemps / toAnalyze.Count + 4;
+        }
+
+        public static double PredictWind(List<double> toAnalyze)
+        {
+            if (toAnalyze == null)
+            {
+                throw new Exception("Cannod analyze a null list");
+            }
+            List<double> wind = new List<double>();
+            double windEx = 0;
+            foreach(double windspeed in toAnalyze)
+            {
+                windEx = windspeed + windEx;
+            }
+
+            return windEx / toAnalyze.Count;
+
         }
 
 
